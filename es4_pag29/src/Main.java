@@ -11,7 +11,6 @@ public class Main {
         System.out.println("\nStato attuale del generatore:");
         System.out.println(gen);
 
-        // Genero altri codici
         System.out.println("\nAltri codici:");
         for (int i = 0; i < 5; i++) {
             System.out.println(gen.genera());
