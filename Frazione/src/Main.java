@@ -18,7 +18,7 @@ public class Main {
 
         do {
 
-            System.out.println("\n--- MENU ---");
+            System.out.println("--- MENU ---");
             System.out.println("1. Visualizza frazione");
             System.out.println("2. Semplifica");
             System.out.println("3. Reciproca");
