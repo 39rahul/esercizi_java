@@ -81,6 +81,9 @@ public class Playlist {
     // Metodo toString[cite: 29]
     @Override
     public String toString() {
-        return "Playlist " + this.nome + ", " + this.quantiBrani + " brani, in " + this.stato + " sul brano " + this.branoCorrente;
+        return "Playlist " + this.nome + ", "
+                + this.quantiBrani + " brani, in "
+                + this.stato + " sul brano "
+                + this.branoCorrente;
     }
 }
