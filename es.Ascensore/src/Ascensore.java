@@ -25,13 +25,13 @@ public class Ascensore {
     }
 
     // Metodo open[cite: 1]
-    public void open() {
-        this.porteAperte = true;
+    public boolean open() {
+        return this.porteAperte = true;
     }
 
     // Metodo close[cite: 1]
-    public void close() {
-        this.porteAperte = false;
+    public boolean close() {
+        return this.porteAperte = false;
     }
 
     // Metodo goUp[cite: 1]
@@ -63,16 +63,20 @@ public class Ascensore {
         return false;
     }
 
-    // Metodo toString[cite: 1]
     @Override
     public String toString() {
-        String statoPorte = this.porteAperte ? "open" : "closed";
-        String descrizionePiano;
-        if (this.pianoCorrente == 0) {
-            descrizionePiano = "ground floor";
+        String statoPorte;
+
+        if (this.porteAperte) {
+            statoPorte = "open";
         } else {
-            descrizionePiano = String.valueOf(this.pianoCorrente);
+            statoPorte = "closed";
         }
-        return "The elevator serves " + this.numeroPiani + " floors, it is currently at " + descrizionePiano + " and the doors are " + statoPorte + ".";
+
+        if (this.pianoCorrente == 0) {
+            return "The elevator serves " + this.numeroPiani + " floors, it is currently at ground floor and the doors are " + statoPorte + ".";
+        } else {
+            return "The elevator serves " + this.numeroPiani + " floors, it is currently at " + this.pianoCorrente + " and the doors are " + statoPorte + ".";
+        }
     }
 }
