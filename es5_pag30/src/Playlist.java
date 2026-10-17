@@ -1,69 +1,89 @@
 public class Playlist {
     private String nome;
-    private int nBrani;
-    private String stato;
-    private int brano = 1;
+    private int quantiBrani;
+    private int branoCorrente;
+    private String stato; // Può essere "PLAY", "PAUSE" o "STOP"
+    private boolean stopChiamatoDueVolte; // Flag per gestire la doppia chiamata a stop
 
-    public Playlist(String nome, int nBrani){
+    // Costruttore con nome e numero di brani[cite: 29]
+    public Playlist(String nome, int quantiBrani) {
         this.nome = nome;
-        this.nBrani = nBrani;
+        this.quantiBrani = quantiBrani;
+        this.branoCorrente = 1;
         this.stato = "STOP";
+        this.stopChiamatoDueVolte = false;
     }
 
-    public Playlist(Playlist p){
-        this.nome = p.nome;
-        this.nBrani = p.nBrani;
-        this.stato = p.stato;
-        this.brano = p.brano;
+    // Costruttore di copia[cite: 29]
+    public Playlist(Playlist altra) {
+        this.nome = altra.nome;
+        this.quantiBrani = altra.quantiBrani;
+        this.branoCorrente = altra.branoCorrente;
+        this.stato = altra.stato;
+        this.stopChiamatoDueVolte = altra.stopChiamatoDueVolte;
     }
 
+    // Metodo getNome[cite: 29]
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
-    public int getnBrani() {
-        return nBrani;
+    // Metodo getQuantiBrani[cite: 29]
+    public int getQuantiBrani() {
+        return this.quantiBrani;
     }
 
-    public void play () {
+    // Metodo play[cite: 29]
+    public void play() {
         this.stato = "PLAY";
+        this.stopChiamatoDueVolte = false;
     }
 
-    public void pause () {
-        if (!(this.stato.equals("STOP"))) {
+    // Metodo pause[cite: 29]
+    public void pause() {
+        if (!this.stato.equals("STOP")) {
             this.stato = "PAUSE";
         }
+        this.stopChiamatoDueVolte = false;
     }
 
-    public void stop () {
-        if(this.stato.equals("STOP")){
-            this.brano = 1;
-        }
-        else{
+    // Metodo stop[cite: 29]
+    public void stop() {
+        if (this.stato.equals("STOP")) {
+            this.stopChiamatoDueVolte = true;
+            this.branoCorrente = 1;
+        } else {
             this.stato = "STOP";
+            this.stopChiamatoDueVolte = false;
         }
     }
 
-    public void branoSuccessivo () {
-        this.brano ++;
-        if (this.brano > this.nBrani){
-            this.brano = this.nBrani;
+    // Metodo branoSuccessivo[cite: 29]
+    public void branoSuccessivo() {
+        if (this.branoCorrente < this.quantiBrani) {
+            this.branoCorrente++;
+        } else {
+            this.branoCorrente = 1;
         }
+        this.stopChiamatoDueVolte = false;
     }
 
-    public void branoPrecedente () {
-        this.brano --;
-        if (this.brano < 1){
-            this.brano = 1;
+    // Metodo branoPrecedente[cite: 29]
+    public void branoPrecedente() {
+        if (this.branoCorrente > 1) {
+            this.branoCorrente--;
+        } else {
+            this.branoCorrente = this.quantiBrani;
         }
+        this.stopChiamatoDueVolte = false;
     }
 
+    // Metodo toString[cite: 29]
     @Override
-    public String toString (){
-        return "Playlist: " + nome +
-                "\nTotale brani: " + nBrani +
-                "\nStato: " + stato +
-                "\nBrano in ascolto: " + brano;
+    public String toString() {
+        return "Playlist " + this.nome + ", "
+                + this.quantiBrani + " brani, in "
+                + this.stato + " sul brano "
+                + this.branoCorrente;
     }
-
 }

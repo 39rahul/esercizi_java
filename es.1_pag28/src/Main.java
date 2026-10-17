@@ -1,33 +1,36 @@
 public class Main {
     public static void main(String[] args) {
+        System.out.println("--- TEST DELLA CLASSE LAMPADINA INTELLIGENTE ---");
 
-        LampadinaIntelligente lamp = new LampadinaIntelligente(60);
-        lamp.setNome("Camera");
+        // 1. Test del costruttore con parametro potenza
+        LampadinaIntelligente l1 = new LampadinaIntelligente(40);
+        System.out.println("\nStato iniziale (dopo costruttore):");
+        System.out.println(l1.toString());
 
-        System.out.println("Stato iniziale:");
-        System.out.println(lamp);
+        // 2. Test dei metodi set per nome e colore
+        l1.setNome("camera");
+        l1.setColore("giallo");
+        System.out.println("\nDopo aver impostato nome e colore:");
+        System.out.println(l1.toString());
 
-        lamp.accendi();
-        System.out.println("\nDopo accensione:");
-        System.out.println(lamp);
+        // 3. Test accensione e aumento illuminazione
+        l1.accendi();
+        l1.aumentaIlluminazione();
+        System.out.println("\nDopo l'accensione e un aumento di illuminazione (+10%):");
+        System.out.println(l1.toString());
 
-        lamp.aumentaIlluminazione();
-        lamp.aumentaIlluminazione();
-        System.out.println("\nDopo due aumenti:");
-        System.out.println(lamp);
+        // 4. Test diminuzione illuminazione (anche da spenta come da richiesta)
+        l1.spegni();
+        l1.diminuisciIlluminazione();
+        l1.diminuisciIlluminazione();
+        System.out.println("\nDopo aver spento la lampadina e diminuito due volte l'illuminazione (-20%):");
+        System.out.println(l1.toString());
 
-        lamp.setColore("giallo");
-        System.out.println("\nDopo cambio colore:");
-        System.out.println(lamp);
-
-        lamp.diminuisciIlluminazione();
-        System.out.println("\nDopo diminuzione:");
-        System.out.println(lamp);
-
-        LampadinaIntelligente copia = new LampadinaIntelligente(lamp);
-        copia.setNome("Copia");
-
-        System.out.println("\nLampadina copiata:");
-        System.out.println(copia);
+        // 5. Test del costruttore di copia
+        LampadinaIntelligente l2 = new LampadinaIntelligente(l1);
+        l2.setNome("cucina");
+        l2.setColore("blu");
+        System.out.println("\nTest costruttore di copia (nuova lampadina l2):");
+        System.out.println(l2.toString());
     }
 }
