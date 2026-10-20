@@ -37,17 +37,44 @@ public class Rettangolo {
     }
 
     public boolean contenuto(Rettangolo r) {
-        double minX1 = Math.min(this.a.getX(), this.b.getX());
-        double maxX1 = Math.max(this.a.getX(), this.b.getX());
-        double minY1 = Math.min(this.a.getY(), this.b.getY());
-        double maxY1 = Math.max(this.a.getY(), this.b.getY());
+        double xMin1, xMax1, yMin1, yMax1;
+        if (this.a.getX() < this.b.getX()) {
+            xMin1 = this.a.getX();
+            xMax1 = this.b.getX();
+        } else {
+            xMin1 = this.b.getX();
+            xMax1 = this.a.getX();
+        }
 
-        double minX2 = Math.min(r.a.getX(), r.b.getX());
-        double maxX2 = Math.max(r.a.getX(), r.b.getX());
-        double minY2 = Math.min(r.a.getY(), r.b.getY());
-        double maxY2 = Math.max(r.a.getY(), r.b.getY());
+        if (this.a.getY() < this.b.getY()) {
+            yMin1 = this.a.getY();
+            yMax1 = this.b.getY();
+        } else {
+            yMin1 = this.b.getY();
+            yMax1 = this.a.getY();
+        }
 
-        return (minX2 >= minX1 && maxX2 <= maxX1 && minY2 >= minY1 && maxY2 <= maxY1);
+        double xMin2, xMax2, yMin2, yMax2;
+        if (r.a.getX() < r.b.getX()) {
+            xMin2 = r.a.getX();
+            xMax2 = r.b.getX();
+        } else {
+            xMin2 = r.b.getX();
+            xMax2 = r.a.getX();
+        }
+
+        if (r.a.getY() < r.b.getY()) {
+            yMin2 = r.a.getY();
+            yMax2 = r.b.getY();
+        } else {
+            yMin2 = r.b.getY();
+            yMax2 = r.a.getY();
+        }
+
+        boolean xContenuta = (xMin2 >= xMin1) && (xMax2 <= xMax1);
+        boolean yContenuta = (yMin2 >= yMin1) && (yMax2 <= yMax1);
+
+        return xContenuta && yContenuta;
     }
 
     @Override
