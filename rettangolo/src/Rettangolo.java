@@ -1,40 +1,57 @@
 public class Rettangolo {
-
     private Punto a;
     private Punto b;
 
     public Rettangolo(Punto a, Punto b) {
-        this.a = a;
-        this.b = b;
+        this.a = new Punto(a);
+        this.b = new Punto(b);
     }
 
-    public double base() {
-        if (b.getX() > a.getX()) {
-            return b.getX() - a.getX();
-        } else {
-            return a.getX() - b.getX();
-        }
+    public Punto getA() {
+        return new Punto(a);
     }
 
-    public double altezza() {
-        if (b.getY() > a.getY()) {
-            return b.getY() - a.getY();
-        } else {
-            return a.getY() - b.getY();
-        }
+    public Punto getB() {
+        return new Punto(b);
     }
 
-    public double perimetro() {
-        return 2 * (base() + altezza());
+    public double getLarghezza() {
+        return Math.abs(b.getX() - a.getX());
     }
 
-    public double area() {
-        return base() * altezza();
+    public double getAltezza() {
+        return Math.abs(b.getY() - a.getY());
+    }
+
+    public double calcolaPerimetro() {
+        return 2 * (getLarghezza() + getAltezza());
+    }
+
+    public double calcolaArea() {
+        return getLarghezza() * getAltezza();
+    }
+
+    public void effettuatrasla(double dx, double dy) {
+        a.trasla(dx, dy);
+        b.trasla(dx, dy);
+    }
+
+    public boolean contenuto(Rettangolo r) {
+        double minX1 = Math.min(this.a.getX(), this.b.getX());
+        double maxX1 = Math.max(this.a.getX(), this.b.getX());
+        double minY1 = Math.min(this.a.getY(), this.b.getY());
+        double maxY1 = Math.max(this.a.getY(), this.b.getY());
+
+        double minX2 = Math.min(r.a.getX(), r.b.getX());
+        double maxX2 = Math.max(r.a.getX(), r.b.getX());
+        double minY2 = Math.min(r.a.getY(), r.b.getY());
+        double maxY2 = Math.max(r.a.getY(), r.b.getY());
+
+        return (minX2 >= minX1 && maxX2 <= maxX1 && minY2 >= minY1 && maxY2 <= maxY1);
     }
 
     @Override
     public String toString() {
-        return "Rettangolo con vertici A(" + a.getX() + "," + a.getY() +
-                ") e B(" + b.getX() + "," + b.getY() + ")";
+        return "Rettangolo [Vertice A: " + a + ", Vertice B: " + b + "]";
     }
 }
