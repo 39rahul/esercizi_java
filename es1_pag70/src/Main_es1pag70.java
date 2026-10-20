@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main_es1pag70 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         TazzaPerDadi tazza = null;
