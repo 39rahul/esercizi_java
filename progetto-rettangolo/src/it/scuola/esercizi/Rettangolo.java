@@ -5,8 +5,17 @@ public class Rettangolo {
     private double altezza;
 
     public Rettangolo(double x1, double y1, double x2, double y2) {
-        this.base = Math.abs(x1 - x2);
-        this.altezza = Math.abs(y1 - y2);
+        if (x1 > x2) {
+            this.base = x1 - x2;
+        } else {
+            this.base = x2 - x1;
+        }
+
+        if (y1 > y2) {
+            this.altezza = y1 - y2;
+        } else {
+            this.altezza = y2 - y1;
+        }
     }
 
     public double getBase() {
