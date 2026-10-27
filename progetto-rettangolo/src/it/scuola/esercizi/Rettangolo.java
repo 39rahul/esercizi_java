@@ -26,11 +26,11 @@ public class Rettangolo {
         return altezza;
     }
 
-    public double getArea() {
+    public double area() {
         return base * altezza;
     }
 
-    public double getPerimetro() {
+    public double perimetro() {
         return 2 * (base + altezza);
     }
 }
